@@ -53,6 +53,7 @@ public class DriveSubsystem extends SubsystemBase {
   private double m_currentTranslationDir = 0.0;
   private double m_currentTranslationMag = 0.0;
 
+
   private SlewRateLimiter m_magLimiter = new SlewRateLimiter(DriveConstants.kMagnitudeSlewRate);
   private SlewRateLimiter m_rotLimiter = new SlewRateLimiter(DriveConstants.kRotationalSlewRate);
   private double m_prevTime = WPIUtilJNI.now() * 1e-6;
@@ -71,14 +72,20 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
   //System.out.println(m_gyro.getAngle());
-  SmartDashboard.getNumber("NavX", m_gyro.getAngle());
+  //SmartDashboard.putNumber("NavX", m_gyro.getYaw());
   }
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("NavX Yaw", m_gyro.getYaw());
+    SmartDashboard.putNumber("NavX Angle", m_gyro.getAngle());
+
+    SmartDashboard.putNumber("FrontLeft Driving Encoder", m_frontLeft.getDrivingEncoderDistance());
+    SmartDashboard.putNumber("FrontLeft Turning Encoder", m_frontLeft.getTurningEncoderDistance());
+
     // Update the odometry in the periodic block
     m_odometry.update(
-        Rotation2d.fromDegrees(m_gyro.getAngle()),
+        Rotation2d.fromDegrees(m_gyro.getAngle()), 
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -247,4 +254,5 @@ public class DriveSubsystem extends SubsystemBase {
   public double getTurnRate() {
     return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
+
 }

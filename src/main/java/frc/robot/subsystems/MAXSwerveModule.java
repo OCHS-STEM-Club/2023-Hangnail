@@ -161,4 +161,12 @@ public class MAXSwerveModule {
   public void resetEncoders() {
     m_drivingEncoder.setPosition(0);
   }
+
+  public double getDrivingEncoderDistance() {
+    return m_drivingEncoder.getPosition();
+  }
+
+  public double getTurningEncoderDistance() {
+    return m_turningEncoder.getPosition();
+  }
 }
