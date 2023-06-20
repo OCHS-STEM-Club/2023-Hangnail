@@ -56,12 +56,12 @@ public class RobotContainer {
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-               -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-//                  -MathUtil.applyDeadband(m_drivingJoystick.getY(), OIConstants.kDriveDeadband),
- //                 -MathUtil.applyDeadband(m_drivingJoystick.getX(), OIConstants.kDriveDeadband),
- //                 -MathUtil.applyDeadband(m_turningJoystick.getZ(), OIConstants.kDriveDeadband),
+ //               -MathUtil.applyDeadband(-m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+ //               -MathUtil.applyDeadband(-m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+  //             -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
+                  -MathUtil.applyDeadband(-m_drivingJoystick.getY(), OIConstants.kDriveDeadband),
+                  -MathUtil.applyDeadband(-m_drivingJoystick.getX(), OIConstants.kDriveDeadband),
+                  -MathUtil.applyDeadband(m_turningJoystick.getX(), OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
   }
@@ -96,11 +96,24 @@ public class RobotContainer {
         .setKinematics(DriveConstants.kDriveKinematics);
 
     // An example trajectory to follow. All units in meters.
+    // Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+    //     // Start at the origin facing the +X direction
+    //     new Pose2d(0, 0, new Rotation2d(0)),
+    //     // Pass through these two interior waypoints, making an 's' curve path
+    //     List.of(new Translation2d(1, 0.5), new Translation2d(2, -0.5)),
+    //    // List.of(new Translation2d(1, 0.5)),
+    //    // List.of(new Translation2d(1, 0.5), new Translation2d(2, -0.5), new Translation2d(3, 0)),
+    //     // End 3 meters straight ahead of where we started, facing forward
+    //     new Pose2d(3, 0, new Rotation2d(0)),
+    //     config);
+
     Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
-        List.of(new Translation2d(1, 0.5), new Translation2d(2, -0.5)),
+        List.of(new Translation2d(1.5, 0)),
+       // List.of(new Translation2d(1, 0.5)),
+       // List.of(new Translation2d(2, 0), new Translation2d(4, 0), new Translation2d(6, 0)),
         // End 3 meters straight ahead of where we started, facing forward
         new Pose2d(3, 0, new Rotation2d(0)),
         config);
