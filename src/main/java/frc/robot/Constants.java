@@ -27,10 +27,10 @@ public final class Constants {
   public static final class DriveConstants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
-    //public static final double kMaxSpeedMetersPerSecond = 4.8;
-    //public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
-    public static final double kMaxSpeedMetersPerSecond = 2;
-       public static final double kMaxAngularSpeed = 1 * Math.PI; // radians per second
+    public static final double kMaxSpeedMetersPerSecond = 4.8;
+    public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+    // public static final double kMaxSpeedMetersPerSecond = 2;
+    //    public static final double kMaxAngularSpeed = 1 * Math.PI; // radians per second
 
     // public static final double kDirectionSlewRate = 1.2; // radians per second
     // public static final double kMagnitudeSlewRate = 1.8; // percent per second (1 = 100%)
@@ -76,6 +76,7 @@ public final class Constants {
     // The MAXSwerve module can be configured with one of three pinion gears: 12T, 13T, or 14T.
     // This changes the drive speed of the module (a pinion gear with more teeth will result in a
     // robot that drives faster).
+    // This is a test comment
     public static final int kDrivingMotorPinionTeeth = 14;
 
     // Invert the turning encoder, since the output shaft rotates in the opposite direction of
@@ -132,7 +133,7 @@ public final class Constants {
     public static final int kDriveJoystickPort = 1;
     public static final int kTurnJoystickPort = 2;
 
-    public static final double kDriveDeadband = 0.05;
+    public static final double kDriveDeadband = 0.1;
 
   }
 
