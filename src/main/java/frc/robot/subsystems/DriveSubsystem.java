@@ -80,6 +80,10 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("NavX pitch", m_gyro.getPitch());
     SmartDashboard.putNumber("NavX roll", m_gyro.getRoll());
 
+    SmartDashboard.putData(m_gyro);
+
+    SmartDashboard.putNumber("Heading", Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees());
+
     SmartDashboard.putNumber("X", m_gyro.getDisplacementX());
     SmartDashboard.putNumber("Y", m_gyro.getDisplacementY());
     SmartDashboard.putNumber("Z", m_gyro.getDisplacementZ());
@@ -89,6 +93,10 @@ public class DriveSubsystem extends SubsystemBase {
 
     SmartDashboard.putNumber("FrontLeft Driving Encoder", m_frontLeft.getDrivingEncoderDistance());
     SmartDashboard.putNumber("FrontLeft Turning Encoder", m_frontLeft.getTurningEncoderDistance());
+
+    SmartDashboard.putNumber(getName(), m_frontLeft.getDrivingEncoderDistance());
+    SmartDashboard.putNumber(getName(), m_frontRight.getDrivingEncoderDistance());
+
 
     // Update the odometry in the periodic block
     m_odometry.update(

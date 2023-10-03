@@ -25,7 +25,7 @@ import frc.robot.subsystems.DriveSubsystem;
 public class StraightMobility extends AutoBase {
     public StraightMobility(DriveSubsystem swerve) {
         super(swerve);
-        PathPlannerTrajectory testPath1 = PathPlanner.loadPath("Comp Auto Straight", 2, 1);
+        PathPlannerTrajectory testPath1 = PathPlanner.loadPath("Segment 2 Test", 2, 1);
        // PathPlannerTrajectory testPath2 = PathPlanner.loadPath("Segment 2 Test", 2, 1);
 
         PPSwerveControllerCommand firstCommand1 = baseSwerveCommand(testPath1);
