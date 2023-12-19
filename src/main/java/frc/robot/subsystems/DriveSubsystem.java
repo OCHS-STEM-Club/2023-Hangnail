@@ -17,6 +17,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
@@ -47,6 +48,8 @@ public class DriveSubsystem extends SubsystemBase {
   // The gyro sensor
   //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
   private final AHRS m_gyro = new AHRS();
+
+  private Field2d m_field = new Field2d();
 
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
@@ -97,6 +100,9 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber(getName(), m_frontLeft.getDrivingEncoderDistance());
     SmartDashboard.putNumber(getName(), m_frontRight.getDrivingEncoderDistance());
 
+    SmartDashboard.putData("Field", m_field);
+
+
     //SmartDashboard.putData("Odometry Before", m);
 
 
@@ -110,6 +116,11 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
+        m_field.setRobotPose(m_odometry.getPoseMeters());
+
+    SmartDashboard.putNumber("m_frontLeft position", m_frontLeft.getDrivingEncoderDistance());
+
+        
   }
 
   /**

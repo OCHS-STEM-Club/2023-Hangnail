@@ -6,12 +6,16 @@ package frc.robot.Autos.Pathplanner;
 
 /** Add your docs here. */
 import java.nio.file.Path;
+import java.util.List;
 
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.PathPlannerTrajectory.PathPlannerState;
+import com.pathplanner.lib.auto.SwerveAutoBuilder;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
@@ -25,17 +29,20 @@ import frc.robot.subsystems.DriveSubsystem;
 public class StraightMobility extends AutoBase {
     public StraightMobility(DriveSubsystem swerve) {
         super(swerve);
-        PathPlannerTrajectory testPath1 = PathPlanner.loadPath("Segment 2 Test", 2, 1);
-       // PathPlannerTrajectory testPath2 = PathPlanner.loadPath("Segment 2 Test", 2, 1);
+        //List<PathPlannerTrajectory> testPath1 = PathPlanner.loadPathGroup("Segment 2 Test", 2, 1);
+        PathPlannerTrajectory testPath2 = PathPlanner.loadPath("Segment 2 Test", 2, 1);
 
-        PPSwerveControllerCommand firstCommand1 = baseSwerveCommand(testPath1);
-        //PPSwerveControllerCommand secondCommand = baseSwerveCommand(testPath2);
+       // return Commands.sequence(AutoBase.);
 
-        PathPlannerState initialState = testPath1.getInitialState();
+        //PPSwerveControllerCommand firstCommand1 = baseSwerveCommand(testPath1);
+        PPSwerveControllerCommand secondCommand = baseSwerveCommand(testPath2);
 
-          SequentialCommandGroup driveSegment1 =
-              new SequentialCommandGroup(firstCommand1);
+        PathPlannerState initialState = testPath2.getInitialState();
 
+        //  SequentialCommandGroup driveSegment1 =
+        //      new SequentialCommandGroup(testPath2);
+
+        //SwerveAutoBuilder autoBuilder = new SwerveAutoBuilder(null, null, null, null, null, null, null)
         
         //   SequentialCommandGroup driveSegment2 =
         //         new TurnToAngle(swerve, -90, false).andThen(secondCommand);
@@ -45,7 +52,7 @@ public class StraightMobility extends AutoBase {
             new InstantCommand(
                 () -> swerve.resetOdometry(new Pose2d(initialState.poseMeters.getTranslation(),
                     initialState.holonomicRotation))),
-            driveSegment1);
+           secondCommand);
             //        new SequentialCommandGroup(turnSegment1));
 
     }
