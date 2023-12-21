@@ -7,13 +7,6 @@ package frc.robot.commands;
 import java.util.HashMap;
 import java.util.List;
 
-import com.pathplanner.lib.PathConstraints;
-import com.pathplanner.lib.PathPlanner;
-import com.pathplanner.lib.PathPlannerTrajectory;
-import com.pathplanner.lib.auto.PIDConstants;
-import com.pathplanner.lib.auto.SwerveAutoBuilder;
-import com.pathplanner.lib.server.PathPlannerServerThread;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -23,6 +16,13 @@ import frc.robot.subsystems.DriveSubsystem;
 /** Add your docs here. */
 public class Autos {
      public static CommandBase exampleAuto(DriveSubsystem swerve) {
+          /** Example static factory for an autonomous command. */
+    return null;  //Commands.sequence(subsystem.exampleMethodCommand(), new MecanumDriveCmd(subsystem));
+  }
+
+  private Autos() {
+    throw new UnsupportedOperationException("This is a utility class!");
+  }
 
       //  public PathPlannerTrajectory (String pathName) {
             // PathConstraints constraints = PathPlanner.getConstraintsFromPath(pathName);
@@ -42,7 +42,5 @@ public class Autos {
 //   //    swerve.postTrajectory(example);
 //       return Commands.sequence(new FollowTrajectory(swerve, example, true));
    
-    return null;
-    }
 }
 
